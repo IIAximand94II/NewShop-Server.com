@@ -28,18 +28,17 @@
                         <p>
                             Category
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('category.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('category.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add</p>
                             </a>
@@ -53,18 +52,17 @@
                         <p>
                             Tags
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('tag.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('tag.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add</p>
                             </a>
@@ -78,7 +76,6 @@
                         <p>
                             Products
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -98,20 +95,18 @@
                 </li>
                 <!-- Colors -->
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('color.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-palette"></i>
                         <p>
                             Colors
-                            <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('size.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Sizes
-                            <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                 </li>
@@ -122,7 +117,6 @@
                         <p>
                             Users
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -147,7 +141,7 @@
                         <p>
                             Orders
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
+                            <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
