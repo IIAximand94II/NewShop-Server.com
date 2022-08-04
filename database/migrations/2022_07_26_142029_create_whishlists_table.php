@@ -15,9 +15,15 @@ return new class extends Migration
     {
         Schema::create('whishlists', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->index('product_id', 'wishlist_product_idx');
+            $table->foreign('product_id', 'wishlist_product_fk')->on('products')->references('id');
+
+            $table->index('user_id', 'wishlist_user_idx');
+            $table->foreign('user_id', 'wishlist_user_fk')->on('users')->references('id');
 
             $table->softDeletes();
         });

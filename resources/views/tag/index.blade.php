@@ -18,25 +18,32 @@
                                     <th>ID</th>
                                     <th>Title</th>
                                     <th>Product count</th>
-                                    <th>Action</th>
+                                    <th>Actions</th>
                                     <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Tag 1</td>
-                                    <td> 3</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Tag 2</td>
-                                    <td> 4</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @foreach($tags as $tag)
+                                    <tr>
+                                        <td>{{ $tag->id }}</td>
+                                        <td>{{ $tag->title }}</td>
+                                        <td> 4</td>
+                                        <td class="justify-content-center">
+                                            <a class="btn btn-secondary m-1" href="{{ route('tag.show', $tag->id) }}"><i class="fas fa-book"> Show</i></a>
+
+                                            <a class="btn btn-primary m-1" href="{{ route('tag.edit', $tag->id) }}"><i class="fas fa-edit"> Edit</i></a>
+
+
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('tag.delete', $tag->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger m-1" ><i class="fas fa-trash-alt"> Delete</i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

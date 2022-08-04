@@ -20,8 +20,8 @@ return new class extends Migration
             $table->text('description');
             $table->string('title_image')->default('no_image.jpg');
             $table->string('preview_image')->default('preview_no_image.jpg');
-            $table->integer('category_id');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedSmallInteger('gender');
             $table->enum('status', ['in_stock', 'on_order', 'no']);
             $table->unsignedFloat('price')->default(0);

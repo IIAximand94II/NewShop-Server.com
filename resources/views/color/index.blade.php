@@ -20,20 +20,34 @@
                                     <th>Color</th>
                                     <th>HEX</th>
                                     <th>Product count</th>
-                                    <th>Action</th>
+                                    <th>Actions</th>
                                     <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Red</td>
-                                    <td><div style="width: 15px; height: 15px; background: red" ></div> </td>
-                                    <th>#123er4</th>
-                                    <td>1</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @foreach($colors as $color)
+                                    <tr>
+                                        <td>{{ $color->id }}</td>
+                                        <td>{{ $color->title }}</td>
+                                        <td><div style="width: 20px; height: 20px; background: {{ $color->hex }}" ></div> </td>
+                                        <th>{{ $color->hex }}</th>
+                                        <td>1</td>
+                                        <td class="justify-content-center">
+                                            <a class="btn btn-secondary m-1" href="{{ route('color.show', $color->id) }}"><i class="fas fa-book"> Show</i></a>
+
+                                            <a class="btn btn-primary m-1" href="{{ route('color.edit', $color->id) }}"><i class="fas fa-edit"> Edit</i></a>
+
+
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('color.delete', $color->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger m-1" ><i class="fas fa-trash-alt"> Delete</i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

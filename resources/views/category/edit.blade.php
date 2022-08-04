@@ -12,23 +12,22 @@
                     <!-- form start -->
                     <form action="{{ route('category.update') }}" method="POST">
                         @csrf
+                        @method('PATCH')
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Select independent or child</label>
-                                <select name="parent_id" class="form-control">
-                                    <option value="0">Independent<option>
-                                    <option value="1">option 2</option>
-                                    <option value="2">option 3</option>
-                                    <option value="3">option 4</option>
+                                <select class="form-control" name="parent_id">
+                                    <option {{ $category->parent_id == 0 ? 'selected': '' }} value="0">Independent category</option>
+                                    {!! $categories !!}
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control" id="title" placeholder="Enter title">
+                                <input type="text" name="title" class="form-control" id="title" value="{{ $category->title }}" placeholder="Enter title">
                             </div>
                             <div class="form-group">
                                 <label for="content">Description</label>
-                                <textarea type="text" class="form-control" id="description" name="description"></textarea>
+                                <textarea type="text" class="form-control" id="description" name="description">{{ $category->description }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="image">Category title image</label>

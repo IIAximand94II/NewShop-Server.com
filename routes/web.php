@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\TagController;
@@ -49,8 +50,8 @@ Route::group(['prefix' => 'color'], function(){
     Route::post('/store', [ColorController::class, 'store'])->name('color.store');
     Route::get('/{color}', [ColorController::class, 'show'])->name('color.show');
     Route::get('/{color}/edit', [ColorController::class, 'edit'])->name('color.edit');
-    Route::put('/{color}', [ColorController::class, 'update'])->name('color.update');
-    Route::delete('/{color}', [ColorController::class, 'delete'])->name('color.delete');
+    Route::patch('/{color}', [ColorController::class, 'update'])->name('color.update');
+    Route::delete('/{color}/delete', [ColorController::class, 'delete'])->name('color.delete');
 });
 
 Route::group(['prefix' => 'size'], function(){
@@ -59,7 +60,7 @@ Route::group(['prefix' => 'size'], function(){
     Route::post('/store', [SizeController::class, 'store'])->name('size.store');
     Route::get('/{size}', [SizeController::class, 'show'])->name('size.show');
     Route::get('/{size}/edit', [SizeController::class, 'edit'])->name('size.edit');
-    Route::put('/{size}', [SizeController::class, 'update'])->name('size.update');
+    Route::patch('/{size}', [SizeController::class, 'update'])->name('size.update');
     Route::delete('/{size}', [SizeController::class, 'delete'])->name('size.delete');
 });
 
@@ -69,7 +70,7 @@ Route::group(['prefix' => 'user'], function(){
     Route::post('/store', [UserController::class, 'store'])->name('user.store');
     Route::get('/{user}', [UserController::class, 'show'])->name('user.show');
     Route::get('/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
-    Route::put('/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::patch('/{user}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/{user}', [UserController::class, 'delete'])->name('user.delete');
 });
 
@@ -79,6 +80,11 @@ Route::group(['prefix' => 'product'], function(){
     Route::post('/store', [ProductController::class, 'store'])->name('product.store');
     Route::get('/{product}', [ProductController::class, 'show'])->name('product.show');
     Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
-    Route::put('/{product}', [ProductController::class, 'update'])->name('product.update');
+    Route::patch('/{product}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/{product}', [ProductController::class, 'delete'])->name('product.delete');
 });
+
+Route::group(['prefix' => 'image'], function(){
+    Route::get('/store', [ImageController::class, 'store'])->name('image.upload');
+});
+

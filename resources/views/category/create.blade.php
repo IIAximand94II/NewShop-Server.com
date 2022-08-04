@@ -15,11 +15,9 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Select independent or child</label>
-                                <select name="parent_id" class="form-control">
-                                    <option value="0">Independent<option>
-                                    <option value="1">option 2</option>
-                                    <option value="2">option 3</option>
-                                    <option value="3">option 4</option>
+                                <select class="form-control" name="parent_id">
+                                    <option value="0">Independent category</option>
+                                    {!! $categories !!}
                                 </select>
                             </div>
                             <div class="form-group">

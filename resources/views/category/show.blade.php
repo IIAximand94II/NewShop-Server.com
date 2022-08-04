@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h2>Category title</h2>
-                            <a href="" class="btn btn-primary m-1">Edit</a>
+                            <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary m-1">Edit</a>
                             <a href="" class="btn btn-danger m-1">Delete</a>
                         </div>
                         <div class="card-body">
@@ -16,20 +16,29 @@
                                 <tbody>
                                     <tr>
                                         <th>ID</th>
-                                        <td>Category 1</td>
+                                        <td>{{ $category->id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Title</th>
+                                        <td>{{ $category->title }}</td>
                                     </tr>
                                     <tr>
                                         <th>Parent category</th>
-                                        <td>Category 1</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Description</th>
-                                        <td>Description</td>
+                                        <td>{{ $category->parent_id }}</td>
                                     </tr>
                                     <tr>
                                         <th>Image</th>
-                                        <td>Image</td>
+                                        <td>{{ $category->title_image }}</td>
                                     </tr>
+                                    <tr>
+                                        <th>Description</th>
+                                        <td>{{ $category->description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Products count</th>
+                                        <td>0</td>
+                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>

@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
+            $table->string('image_url');
+            $table->string('image_uri');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

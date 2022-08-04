@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class TagController extends Controller
 {
     public function index(){
-        return view('tag.index');
+        $tags = Tag::all();
+        return view('tag.index', compact('tags'));
     }
 
     public function create(){
@@ -18,24 +19,28 @@ class TagController extends Controller
 
     public function store(TagRequest $request){
         $data = $request->validated();
-        dd($data);
-        //Tag::firstOrCreate($data);
-        //return view();
+        //dd($data);
+        Tag::firstOrCreate($data);
+        return redirect()->route('tag.index');
     }
 
-    public function show(){
-
+    public function show(Tag $tag){
+        return view('tag.show', compact('tag'));
     }
 
-    public function edit(){
-
+    public function edit(Tag $tag){
+        return view('tag.edit', compact('tag'));
     }
 
-    public function update(){
-
+    public function update(TagRequest $request, Tag $tag){
+        $data = $request->validated();
+        //dd($data);
+        $tag->update($data);
+        return view('tag.show', compact('tag'));
     }
 
-    public function delete(){
-
+    public function delete(Tag $tag){
+        $tag->delete();
+        return redirect()->route('tag.index');
     }
 }
