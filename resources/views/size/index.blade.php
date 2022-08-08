@@ -23,13 +23,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>52</td>
-                                    <td>Category 1</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @foreach($sizes as $size)
+                                    <tr>
+                                        <td>{{ $size->id }}</td>
+                                        <td>{{ $size->size }}</td>
+                                        <td>{{ $size->category_id }}</td>
+                                        <td>
+                                            <a class="btn btn-secondary m-1" href="{{ route('size.show', $size->id) }}"><i class="fas fa-book"> Show</i></a>
+
+                                            <a class="btn btn-primary m-1" href="{{ route('size.edit', $size->id) }}"><i class="fas fa-edit"> Edit</i></a>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('size.delete', $size->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger m-1" ><i class="fas fa-trash-alt"> Delete</i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

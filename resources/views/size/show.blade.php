@@ -7,8 +7,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h2>Category title</h2>
-                            <a href="{{ route('color.edit', $size->id) }}" class="btn btn-primary m-1">Edit</a>
+                            <h2>Size title</h2>
+                            <a href="{{ route('size.edit', $size->id) }}" class="btn btn-primary m-1">Edit</a>
                             <a href="" class="btn btn-danger m-1">Delete</a>
                         </div>
                         <div class="card-body">
@@ -20,7 +20,11 @@
                                     </tr>
                                     <tr>
                                         <th>Size</th>
-                                        <td>{{ $size->title }}</td>
+                                        <td>{{ $size->size }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Category</th>
+                                        <td>{{ $size->category_id }}</td>
                                     </tr>
                                 </tbody>
                             </table>

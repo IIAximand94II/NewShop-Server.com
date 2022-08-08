@@ -9,6 +9,20 @@
                         <h3 class="card-title">Add color</h3>
                     </div>
                     <!-- /.card-header -->
+                    <!-- errors -->
+                    <div class="m-3">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <h2 class="text-center">Errors!</h2>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                    <!-- /.errors -->
                     <!-- form start -->
                     <form action="{{ route('color.update', $color->id) }}" method="POST">
                         @csrf

@@ -11,8 +11,8 @@ use Illuminate\Http\Request;
 class SizeController extends Controller
 {
     public function index(){
-        $categories = Category::all();
-        return view('size.index', compact('categories'));
+        $sizes = Size::all();
+        return view('size.index', compact('sizes'));
     }
 
     public function create(){
@@ -32,13 +32,12 @@ class SizeController extends Controller
     }
 
     public function edit(Size $size){
-        $categories = CategoryService::run();
+        $categories = CategoryService::run($size->category_id);
         return view('size.edit', compact('size','categories'));
     }
 
     public function update(SizeRequest $request,Size $size){
         $data = $request->validated();
-        dd($data);
         $size->update($data);
         return view('size.show', compact('size'));
     }

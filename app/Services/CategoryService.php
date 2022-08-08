@@ -9,9 +9,11 @@ use App\Models\Category;
 class CategoryService
 {
     public static $value;
+    public static $disabled;
 
-    public static function run($value=null){
+    public static function run($value=null, $disabled = null){
         self::$value = $value;
+        self::$disabled = $disabled;
         $tree = self::tree();
         $show_tree = self::showCat($tree, '');
         //$template = '<select class="form-control" name="category"><option value="0">Independent Category '. $show_tree .'</select>';
@@ -37,11 +39,12 @@ class CategoryService
 
     public static function tplMenu($category, $str){
         $select = $category->id === self::$value ? 'selected' : '';
+        $disabled = $category->id === self::$disabled ? 'disabled': '';
         if($category->parent_id === 0){
-            $menu = '<option class="text-danger" '.$select.' value="'.$category->id.'">'.$category->title.'</option>';
+            $menu = '<option class="text-danger" '.$select.' '.$disabled.' value="'.$category->id.'">'.$category->title.'</option>';
         }else{
             //dd("It's work!!!");
-            $menu = '<option value="'.$category->id.'" '.$select.'>'.$str.' '.$category->title.'</option>';
+            $menu = '<option value="'.$category->id.'" '.$select.' '.$disabled.'>'.$str.' '.$category->title.'</option>';
         }
 
         if(isset($category->children)){

@@ -30,7 +30,7 @@ Route::group(['prefix' => 'category'], function(){
     Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
     Route::get('/{category}', [CategoryController::class, 'show'])->name('category.show');
     Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::patch('/{category)', [CategoryController::class, 'update'])->name('category.update');
+    Route::patch('/{category}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/{category}', [CategoryController::class, 'delete'])->name('category.delete');
 });
 

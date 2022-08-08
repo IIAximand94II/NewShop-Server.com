@@ -9,10 +9,25 @@
                         <h3 class="card-title">Create category</h3>
                     </div>
                     <!-- /.card-header -->
+                    <!-- errors -->
+                    <div class="m-3">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <h2 class="text-center">Errors!</h2>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                    <!-- /.errors -->
                     <!-- form start -->
                     <form action="{{ route('category.store') }}" method="POST">
                         @csrf
                         <div class="card-body">
+
                             <div class="form-group">
                                 <label>Select independent or child</label>
                                 <select class="form-control" name="parent_id">

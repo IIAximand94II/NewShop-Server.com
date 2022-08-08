@@ -6,24 +6,39 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Edit category</h3>
+                        <h3 class="card-title">Create category</h3>
                     </div>
                     <!-- /.card-header -->
+                    <!-- errors -->
+                    <div class="m-3">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <h2 class="text-center">Errors!</h2>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                    <!-- /.errors -->
                     <!-- form start -->
-                    <form action="{{ route('category.update') }}" method="POST">
+                    <form action="{{ route('category.update', $category->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <div class="card-body">
+
                             <div class="form-group">
                                 <label>Select independent or child</label>
                                 <select class="form-control" name="parent_id">
-                                    <option {{ $category->parent_id == 0 ? 'selected': '' }} value="0">Independent category</option>
+                                    <option value="0">Independent category</option>
                                     {!! $categories !!}
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control" id="title" value="{{ $category->title }}" placeholder="Enter title">
+                                <input type="text" value="{{ $category->title }}" name="title" class="form-control" id="title" placeholder="Enter title">
                             </div>
                             <div class="form-group">
                                 <label for="content">Description</label>

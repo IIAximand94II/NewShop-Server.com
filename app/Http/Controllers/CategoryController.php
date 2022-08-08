@@ -29,17 +29,20 @@ class CategoryController extends Controller
     }
 
     public function show(Category $category){
+        //dd($category);
         return view('category.show', compact('category'));
     }
 
     public function edit(Category $category){
-        $categories = CategoryService::run($category->id);
+        $categories = CategoryService::run($category->id, $category->id);
+        //dd($category);
         return view('category.edit', compact('categories', 'category'));
     }
 
     public function update(CategoryRequest $request, Category $category){
         $data = $request->validated();
-        //dd($data);
+        //dump($data);
+        //dd($category);
         $category->update($data);
         return redirect()->route('category.index');
     }
