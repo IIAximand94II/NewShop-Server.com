@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
@@ -17,6 +19,8 @@ class ProductController extends Controller
 {
     public function index(){
         $products = Product::all();
+        $cat = Category::all();
+        dd(CategoryResource::collection($cat));
         return view('product.index', compact('products'));
     }
 
@@ -45,7 +49,7 @@ class ProductController extends Controller
     }
 
     public function show(Product $product){
-
+        dd($product->reviews);
     }
 
     public function edit(Product $product){

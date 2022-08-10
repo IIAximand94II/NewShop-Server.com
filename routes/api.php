@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['prefix'=>'products'], function(){
     Route::get('/', [\App\Http\Controllers\API\ProductController::class, 'index']);
+    Route::get('/hit', [\App\Http\Controllers\API\ProductController::class, 'hit']);
     Route::get('/{product}', [\App\Http\Controllers\API\ProductController::class, 'show']);
 });
 

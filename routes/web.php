@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
@@ -82,6 +83,11 @@ Route::group(['prefix' => 'product'], function(){
     Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::patch('/{product}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/{product}', [ProductController::class, 'delete'])->name('product.delete');
+});
+
+Route::group(['prefix' => 'review'], function(){
+    Route::get('/', [ReviewController::class, 'index'])->name('review.index');
+    Route::get('/{review}', [ReviewController::class, 'show'])->name('review.show');
 });
 
 Route::group(['prefix' => 'image'], function(){

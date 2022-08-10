@@ -23,4 +23,19 @@ class Product extends Model
     public function sizes(){
         return $this->belongsToMany(Size::class, 'product_sizes', 'product_id', 'size_id');
     }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+        //return $this->hasMany(Category::class, 'id', 'category_id');
+    }
+
+    public function gallery(){
+        return $this->hasMany(ProductGallery::class, 'id', 'product_id');
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
+
 }
