@@ -23,7 +23,8 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedSmallInteger('gender');
-            $table->enum('status', ['in_stock', 'on_order', 'no']);
+            //$table->unsignedSmallInteger('status')->default(0);
+            $table->enum('existence', ['in_stock', 'on_order', 'no']);
             $table->unsignedFloat('price')->default(0);
             $table->unsignedFloat('old_price')->default(0);
             $table->unsignedBigInteger('quantity')->default(0);

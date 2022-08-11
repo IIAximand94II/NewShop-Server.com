@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Product;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SizeResource extends JsonResource
+class ProductGroupResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +17,11 @@ class SizeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'size' => $this->size,
+            'gallery' => '',
+            'color' => ColorResource::collection($this->color),
+            'sizes' => $this->sizes,
+            'price' => $this->price,
+            'quantity' => $this->quantity,
         ];
     }
 }

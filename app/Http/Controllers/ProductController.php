@@ -49,7 +49,10 @@ class ProductController extends Controller
     }
 
     public function show(Product $product){
-        dd($product->reviews);
+//        foreach($product->group->sizes as $s){
+//            dump($s);
+//        }
+        dd($product->group[0]->sizes);
     }
 
     public function edit(Product $product){

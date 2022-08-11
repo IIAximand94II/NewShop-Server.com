@@ -37,5 +37,9 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function group(){
+        return $this->hasMany(ProductGroup::class);
+    }
+
 
 }
