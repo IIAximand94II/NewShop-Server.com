@@ -52,7 +52,7 @@ class ProductController extends Controller
 //        foreach($product->group->sizes as $s){
 //            dump($s);
 //        }
-        dd($product->group[0]->sizes);
+        dd($product->group[0]->sizes->count());
     }
 
     public function edit(Product $product){

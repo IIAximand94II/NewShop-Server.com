@@ -14,6 +14,10 @@ class ImageResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'image' => url('storage/'.$this->image_url),
+            'preview_image' => ('storage/'.$this->preview_image)
+        ];
     }
 }

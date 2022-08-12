@@ -17,10 +17,12 @@ class ProductGroupResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'gallery' => '',
+            'gallery' => ImageResource::collection($this->gallery),
             'color' => ColorResource::collection($this->color),
-            'sizes' => $this->sizes,
+            'sizes' => $this->uniqueSizes,
+            'available_sizes' => $this->sizes,
             'price' => $this->price,
+            'amount' => $this->sizes->count(),
             'quantity' => $this->quantity,
         ];
     }

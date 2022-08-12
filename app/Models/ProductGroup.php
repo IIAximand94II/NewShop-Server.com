@@ -20,4 +20,12 @@ class ProductGroup extends Model
     public function sizes(){
         return $this->belongsToMany(Size::class, 'product_group_sizes', 'group_id', 'size_id');
     }
+
+    public function uniqueSizes(){
+        return $this->belongsToMany(Size::class, 'product_group_sizes', 'group_id', 'size_id')->distinct();
+    }
+
+    public function gallery(){
+        return $this->hasMany(ProductGallery::class, 'product_id', 'id');
+    }
 }

@@ -24,4 +24,9 @@ Route::group(['prefix'=>'products'], function(){
     Route::get('/{product}', [\App\Http\Controllers\API\ProductController::class, 'show']);
 });
 
+Route::group(['prefix'=>'filters'], function(){
+    Route::get('/', [\App\Http\Controllers\API\FilterController::class, 'index']);
+});
+
+
 
