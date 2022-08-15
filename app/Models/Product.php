@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    //use Filterable;
+    use Filterable;
 
     use HasFactory, SoftDeletes;
     protected $table = 'products';
@@ -43,6 +43,7 @@ class Product extends Model
     public function group(){
         return $this->hasMany(ProductGroup::class);
     }
+
 
 
 }

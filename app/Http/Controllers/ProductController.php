@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
+use App\Libraries\CategoryMenu;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
@@ -18,10 +19,9 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::all();
-        $cat = Category::all();
-        dd(CategoryResource::collection($cat));
-        return view('product.index', compact('products'));
+        //$cat = Category::all();
+        //dd(CategoryMenu::run());
+        return view('product.index');
     }
 
     public function create(){
@@ -49,10 +49,7 @@ class ProductController extends Controller
     }
 
     public function show(Product $product){
-//        foreach($product->group->sizes as $s){
-//            dump($s);
-//        }
-        dd($product->group[0]->sizes->count());
+        dd($product->groupColors());
     }
 
     public function edit(Product $product){
