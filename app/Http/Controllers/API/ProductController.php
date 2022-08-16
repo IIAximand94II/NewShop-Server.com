@@ -7,6 +7,7 @@ use App\Http\Filters\ProductFilter;
 use App\Http\Requests\API\FilterRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class ProductController extends Controller
@@ -31,7 +32,7 @@ class ProductController extends Controller
         $data = $request->validated();
         $filter = app()->make(ProductFilter::class, ['queryParams' => array_filter($data)]);
         $products = Product::filter($filter)->get();
-        //return Response::json($data);
+        //dd(DB::getQueryLog());
         return ProductResource::collection($products);
     }
 

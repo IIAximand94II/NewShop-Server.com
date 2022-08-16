@@ -44,6 +44,14 @@ class Product extends Model
         return $this->hasMany(ProductGroup::class);
     }
 
+    public function productGroupColors(){
+        return $this->hasManyThrough(Color::class, ProductGroup::class, 'product_id', 'id','id','id');
+    }
+
+    public function productGroupSizes(){
+        return $this->hasManyThrough(ProductGroupSize::class, ProductGroup::class, 'product_id', 'group_id');
+    }
+
 
 
 }

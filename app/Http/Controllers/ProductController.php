@@ -49,7 +49,7 @@ class ProductController extends Controller
     }
 
     public function show(Product $product){
-        dd($product->groupColors());
+        dd($product->tags);
     }
 
     public function edit(Product $product){

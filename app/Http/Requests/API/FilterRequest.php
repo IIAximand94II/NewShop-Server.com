@@ -25,12 +25,12 @@ class FilterRequest extends FormRequest
     {
         return [
             'gender' => '',
-            'categories' => '',
-            'colors' => '',
-            'sizes' => '',
-            'availability' => '',
-            'price' => '',
-            'tags' => '',
+            'categories' => 'nullable|array',
+            'colors' => 'nullable|array',
+            'sizes' => 'nullable|array',
+            'existence' => 'nullable|array',
+            'price' => 'nullable|array',
+            'tags' => 'nullable|array',
         ];
     }
 }
