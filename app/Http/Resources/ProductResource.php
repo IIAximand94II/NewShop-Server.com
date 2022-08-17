@@ -35,6 +35,8 @@ class ProductResource extends JsonResource
             'gender' => $this->gender,
             'status' => $this->status,
             'price' => $this->price,
+            'group_min_price' => $this->group->min('price'),
+            'group_max_price' => $this->group->max('price'),
             'old_price' => $this->old_price,
             'quantity' => $this->quantity,
             'reviews' => ReviewResource::collection($this->reviews),

@@ -13,10 +13,12 @@ use Response;
 class ProductController extends Controller
 {
 
-    public function index(){
-        $products = Product::all();
+    public function index(FilterRequest $request){
+        $data = $request->validated();
+        $filter = app()->make(ProductFilter::class, ['queryParams' => array_filter($data)]);
+        $products = Product::filter($filter)->paginate(3, ['*'], 'page', $data['page']);
+        //dd(DB::getQueryLog());
         return ProductResource::collection($products);
-        //return 11111111111;
     }
 
     public function hits(){
@@ -27,13 +29,4 @@ class ProductController extends Controller
     public function show(Product $product){
         return new ProductResource($product);
     }
-
-    public function filters(FilterRequest $request){
-        $data = $request->validated();
-        $filter = app()->make(ProductFilter::class, ['queryParams' => array_filter($data)]);
-        $products = Product::filter($filter)->get();
-        //dd(DB::getQueryLog());
-        return ProductResource::collection($products);
-    }
-
 }

@@ -24,7 +24,8 @@ class FilterRequest extends FormRequest
     public function rules()
     {
         return [
-            'gender' => '',
+            'page' => 'nullable|integer',
+            'gender' => 'nullable|integer',
             'categories' => 'nullable|array',
             'colors' => 'nullable|array',
             'sizes' => 'nullable|array',

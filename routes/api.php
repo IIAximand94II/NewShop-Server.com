@@ -19,13 +19,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix'=>'products'], function(){
-    //Route::get('/', [\App\Http\Controllers\API\ProductController::class, 'index']);
+    Route::post('/', [\App\Http\Controllers\API\ProductController::class, 'index']);
     Route::get('/hits', [\App\Http\Controllers\API\ProductController::class, 'hits']);
-    Route::post('/', [\App\Http\Controllers\API\ProductController::class, 'filters']);
     Route::get('/{product}', [\App\Http\Controllers\API\ProductController::class, 'show']);
 });
 
 Route::get('/filters', [\App\Http\Controllers\API\FilterController::class, 'index']);
+
+Route::get('/sliders',[\App\Http\Controllers\API\SliderController::class, 'index']);
 
 
 
