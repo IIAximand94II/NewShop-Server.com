@@ -94,3 +94,7 @@ Route::group(['prefix' => 'image'], function(){
     Route::get('/store', [ImageController::class, 'store'])->name('image.upload');
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

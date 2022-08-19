@@ -18,11 +18,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Route::group(['middleware' => 'auth:sanctum'], function(){
+//   Route::get('/test', [\App\Http\Controllers\TestController::class,'test']);
+//});
+
 Route::group(['prefix'=>'products'], function(){
     Route::post('/', [\App\Http\Controllers\API\ProductController::class, 'index']);
     Route::get('/hits', [\App\Http\Controllers\API\ProductController::class, 'hits']);
     Route::get('/{product}', [\App\Http\Controllers\API\ProductController::class, 'show']);
 });
+
+Route::group(['prefix'=>'auth'], function(){
+    Route::post('/register', [\App\Http\Controllers\API\AuthController::class, 'register']);
+    Route::post('/login', [\App\Http\Controllers\API\AuthController::class, 'login']);
+    Route::post('/logout', [\App\Http\Controllers\API\AuthController::class, 'logout']);
+    Route::post('/forgot', [\App\Http\Controllers\API\AuthController::class, 'forgot']);
+    Route::post('/reset', [\App\Http\Controllers\API\AuthController::class, 'reset']);
+});
+
 
 Route::get('/filters', [\App\Http\Controllers\API\FilterController::class, 'index']);
 

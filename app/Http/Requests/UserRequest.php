@@ -25,7 +25,8 @@ class UserRequest extends FormRequest
     {
         return [
             'login' => 'string|unique:users',
-            'name' => 'string',
+            'first_name' => 'string',
+            'last_name' => 'string',
             'email' => 'email|unique:users',
             'age' => 'integer',
             'gender' => 'integer|nullable',

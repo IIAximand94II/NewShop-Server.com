@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    // add login and register route 'login', 'register'
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'login', 'register'],
 
     'allowed_methods' => ['*'],
 
@@ -29,6 +30,6 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 
 ];

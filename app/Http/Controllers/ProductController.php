@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
 use App\Libraries\CategoryMenu;
+use App\Mail\User\Auth\ResetPassMail;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
@@ -14,6 +15,7 @@ use App\Models\Size;
 use App\Models\Tag;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -49,7 +51,9 @@ class ProductController extends Controller
     }
 
     public function show(Product $product){
-        dd($product->tags);
+//        $code = '123456';
+//        Mail::to('qwer@mail.ru')->send(new ResetPassMail($code));
+        dd(1111111);
     }
 
     public function edit(Product $product){
