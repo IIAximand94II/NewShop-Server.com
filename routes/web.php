@@ -95,6 +95,7 @@ Route::group(['prefix' => 'image'], function(){
 });
 
 
-Auth::routes();
+//Auth::routes();
+Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
