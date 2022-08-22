@@ -22,16 +22,21 @@ Route::group(['prefix'=>'products'], function(){
     Route::post('/', [\App\Http\Controllers\API\ProductController::class, 'index']);
     Route::get('/hits', [\App\Http\Controllers\API\ProductController::class, 'hits']);
     Route::get('/{product}', [\App\Http\Controllers\API\ProductController::class, 'show']);
+
+    Route::group(['middleware'=>'auth:sanctum'], function(){
+        Route::post('/wishlist', [\App\Http\Controllers\API\WishlistController::class, 'store']);
+    });
 });
 
 Route::group(['prefix'=>'auth'], function(){
     Route::post('/register', [\App\Http\Controllers\API\AuthController::class, 'register']);
 //    Route::get('/email/verify/{id}/{hash}', [\App\Http\Controllers\API\AuthController::class, 'verify'])->name('verification.verify');
 //    Route::get('/email/resend', [\App\Http\Controllers\API\AuthController::class, 'resend'])->name('verification.resend');
-    // test sanctum auth
+
     Route::group(['middleware'=>'auth:sanctum'], function(){
+        Route::get('/profile', [\App\Http\Controllers\API\UserController::class, 'index']);
         Route::post('/logout', [\App\Http\Controllers\API\AuthController::class, 'logout']);
-        Route::post('/refresh', [\App\Http\Controllers\API\AuthController::class, 'refresh']);
+        //Route::post('/refresh', [\App\Http\Controllers\API\AuthController::class, 'refresh']);
         //Route::get('/test', [\App\Http\Controllers\API\TestController::class, 'index']);
     });
 

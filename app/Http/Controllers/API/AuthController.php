@@ -27,8 +27,12 @@ class AuthController extends Controller
         $data['password'] = Hash::make($data['password']);
         $user = User::firstOrCreate($data);
 
+        $token = $user->createToken('authToken')->plainTextToken;
+
         $response = [
-            'message' => 'Registration successfully! Login in you account.',
+            'message' => 'Registration successfully!',
+            'user_info' => new UserResource($user),
+            'token' => $token,
         ];
         return Response::json($response);
 
@@ -55,18 +59,21 @@ class AuthController extends Controller
     public function login(LoginRequest $request){
         $data = $request->validated();
         $user = User::where('email', $data['email'])->first();
-        if(!$user || !Hash::check($data['password'], $user->password)){
-            return Response::json(['message'=>'No record found']);
+
+        if(!$user){
+            return Response::json(['message' => 'User not found!']);
         }
-//        if(!$user->email_verified_at){
-//            return Response::json(['message'=>'Confirmed your email address']);
-//        }
+        if(!Hash::check($data['password'], $user->password)){
+            return Response::json(['message' => 'Wrong password.']);
+        }
+
         $token = $user->createToken('authToken')->plainTextToken;
         $response = [
             'message' => 'Login successfully.',
             'user_info' => new UserResource($user),
             'token' => $token,
         ];
+
         return Response::json($response);
     }
 
@@ -83,6 +90,7 @@ class AuthController extends Controller
 
     public function logout(){
         auth()->user()->tokens()->delete();
+        auth()->logout();
         return Response::json(['message' => 'Logout']);
     }
 

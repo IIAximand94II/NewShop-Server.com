@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class TestController extends Controller
 {
 
-    public function index(FilterRequest $request){
+    public function index(){
 
         return 112233;
     }

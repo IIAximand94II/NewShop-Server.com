@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\API\Auth;
+namespace App\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VerifyMailRequest extends FormRequest
+class WishlistRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class VerifyMailRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => '',
-            'hash' => '',
+            'product_id' => '',
         ];
     }
 }

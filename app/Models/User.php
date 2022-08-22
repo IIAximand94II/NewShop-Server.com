@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\API\WishlistController;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -62,5 +63,13 @@ class User extends Authenticatable
 
     public function addresses(){
         return $this->hasMany(UserAddress::class, 'user_id', 'id');
+    }
+
+    public function wishlist(){
+        return $this->belongsToMany(Product::class, 'wishlists', 'user_id', 'product_id');
+    }
+
+    public function review(){
+        return $this->hasMany(Review::class, 'user_id', 'id');
     }
 }
