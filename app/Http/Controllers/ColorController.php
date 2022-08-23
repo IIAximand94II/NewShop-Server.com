@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ColorRequest;
+use App\Http\Resources\Admin\ColorResource;
 use App\Models\Color;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class ColorController extends Controller
 {
     public function index(){
         $colors = Color::all();
-        return view('color.index', compact('colors'));
+        return ColorResource::collection($colors);
     }
 
     public function create(){

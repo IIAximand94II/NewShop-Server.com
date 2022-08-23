@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TagRequest;
+use App\Http\Resources\Admin\TagResource;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class TagController extends Controller
 {
     public function index(){
         $tags = Tag::all();
-        return view('tag.index', compact('tags'));
+        return TagResource::collection($tags);
     }
 
     public function create(){

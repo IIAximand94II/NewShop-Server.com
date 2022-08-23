@@ -1,12 +1,11 @@
-@extends('layouts.admin')
-@section('content')
+<template>
     <div class="content-wrapper">
         <!-- Breadcrumbs -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Simple Tables</h1>
+                        <h1>Products</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -17,7 +16,7 @@
                 </div>
             </div>
         </section>
-
+        <router-link class="btn btn-secondary" :to="{ name:'product.create' }">Create product</router-link>
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -25,7 +24,11 @@
                     <div class="card mt-2">
                         <div class="card-header">
                             <h3 class="card-title">Size</h3>
-                            <a href="{{ route('size.create') }}" class="btn btn-secondary fa-pull-right">Create size</a>
+                            <div class="fa-pull-right">
+                                <router-link class="btn btn-primary mr-1" :to="{ name:'product.create' }">Create product</router-link>
+                                <router-link class="btn btn-secondary" :to="{ name:'product.single.create' }">Add single product in group</router-link>
+                            </div>
+
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -33,32 +36,21 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Size</th>
+                                    <th>Title</th>
+                                    <th>Image</th>
                                     <th>Category</th>
+                                    <th>Gender</th>
+                                    <th>Product in group</th>
+                                    <th>Total orders</th>
+                                    <th>Existence</th>
+                                    <th>Created</th>
+                                    <th>Updated</th>
+                                    <th>Change status</th>
                                     <th>Action</th>
                                     <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($sizes as $size)
-                                    <tr>
-                                        <td>{{ $size->id }}</td>
-                                        <td>{{ $size->size }}</td>
-                                        <td>{{ $size->category_id }}</td>
-                                        <td>
-                                            <a class="btn btn-secondary m-1" href="{{ route('size.show', $size->id) }}"><i class="fas fa-book"> Show</i></a>
-
-                                            <a class="btn btn-primary m-1" href="{{ route('size.edit', $size->id) }}"><i class="fas fa-edit"> Edit</i></a>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('size.delete', $size->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger m-1" ><i class="fas fa-trash-alt"> Delete</i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -69,4 +61,14 @@
         </section>
         <!-- /.content -->
     </div>
-@endsection
+</template>
+
+<script>
+export default {
+    name: "IndexView"
+}
+</script>
+
+<style scoped>
+
+</style>

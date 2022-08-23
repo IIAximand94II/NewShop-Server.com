@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SizeRequest;
-use App\Models\Category;
+use App\Http\Resources\Admin\SizeResource;
 use App\Models\Size;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class SizeController extends Controller
 {
     public function index(){
         $sizes = Size::all();
-        return view('size.index', compact('sizes'));
+        return SizeResource::collection($sizes);
     }
 
     public function create(){

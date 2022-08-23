@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// api for client
 Route::group(['prefix'=>'products'], function(){
     Route::post('/', [\App\Http\Controllers\API\ProductController::class, 'index']);
     Route::get('/hits', [\App\Http\Controllers\API\ProductController::class, 'hits']);
@@ -50,4 +51,43 @@ Route::get('/filters', [\App\Http\Controllers\API\FilterController::class, 'inde
 Route::get('/sliders',[\App\Http\Controllers\API\SliderController::class, 'index']);
 
 
+
+// api for Admin SPA Dashboard
+Route::group(['prefix' => 'admin'], function(){
+    Route::group(['prefix'=>'categories'], function(){
+        Route::get('/', [\App\Http\Controllers\CategoryController::class, 'index']);
+    });
+
+    Route::group(['prefix'=>'tags'], function(){
+        Route::get('/', [\App\Http\Controllers\TagController::class, 'index']);
+    });
+
+    Route::group(['prefix'=>'colors'], function(){
+        Route::get('/', [\App\Http\Controllers\ColorController::class, 'index']);
+    });
+
+    Route::group(['prefix'=>'sizes'], function(){
+        Route::get('/', [\App\Http\Controllers\SizeController::class, 'index']);
+    });
+
+    Route::group(['prefix'=>'products'], function(){
+        Route::get('/', [\App\Http\Controllers\ProductController::class, 'index']);
+    });
+
+    Route::group(['prefix'=>'images'], function(){
+        Route::get('/', [\App\Http\Controllers\ImageController::class, 'index']);
+    });
+
+    Route::group(['prefix'=>'users'], function(){
+        Route::get('/', [\App\Http\Controllers\UserController::class, 'index']);
+    });
+
+    Route::group(['prefix'=>'reviews'], function(){
+        Route::get('/', [\App\Http\Controllers\ReviewController::class, 'index']);
+    });
+
+    Route::group(['prefix'=>'orders'], function(){
+        Route::get('/', [\App\Http\Controllers\OrderController::class, 'index']);
+    });
+});
 
