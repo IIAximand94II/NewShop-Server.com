@@ -51,17 +51,15 @@ class ProductController extends Controller
     }
 
     public function show(Product $product){
-//        $code = '123456';
-//        Mail::to('qwer@mail.ru')->send(new ResetPassMail($code));
-        dd(1111111);
+//
     }
 
     public function edit(Product $product){
-        $categories = CategoryService::run();
-        $tags = Tag::all();
-        $colors = Color::all();
-        $sizes = Size::all();
-        return view('product.edit', compact('categories', 'sizes', 'colors', 'tags', 'product'));
+//        $categories = CategoryService::run();
+//        $tags = Tag::all();
+//        $colors = Color::all();
+//        $sizes = Size::all();
+//        return view('product.edit', compact('categories', 'sizes', 'colors', 'tags', 'product'));
     }
 
     public function update(Product $product){

@@ -32,13 +32,7 @@
                                          :create-option="true" :options="colors"></multiselect>
                         </div>
 
-                        <div class="form-group">
-                            <label for="sizes">Sizes</label>
-                            <multiselect v-model="sizes.value" id="sizes" mode="tags"
-                                         :close-on-select="false"
-                                         :searchable="true"
-                                         :create-option="true" :options="sizes"></multiselect>
-                        </div>
+                        <ListBoxComponent ref="sizes" v-bind:sizes="sizes"></ListBoxComponent>
 
                         <div class="form-group">
                             <label for="price">Price</label>
@@ -51,7 +45,7 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button @click.prevent="store" type="submit" class="btn btn-primary">Add</button>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -64,15 +58,25 @@
 import BreadcrumbsComponent from "../../components/BreadcrumbsComponent.vue";
 import Multiselect from '@vueform/multiselect';
 import Dropzone from 'dropzone';
+import axios from "axios";
+import ListBoxComponent from "./components/ListBoxComponent.vue";
 export default {
     name: "AddSingleProductView",
 
     mounted() {
         this.dropzone = new Dropzone(this.$refs.dropzone, {
-            url:'/test',
+            url:'/api/admin/products/single',
             maxFiles: 6,
             autoProcessQueue: false,
+            addRemoveLinks: true,
         })
+
+        //this.getColors();
+        //this.getSizes()
+    },
+
+    updated() {
+
     },
 
     data(){
@@ -94,10 +98,70 @@ export default {
                 {value: 4, label: 'XL'}
             ],
 
+            // selectedSize:0,
+            //
+            // addedSizes:[],
+            // totalSelectSizes: 0,
         }
     },
 
-    components: {BreadcrumbsComponent,Multiselect}
+    methods:{
+        getSizes(){
+            axios.get('/api/sizes')
+                .then(res => {
+                    this.sizes = res.data.data;
+                    console.log(res);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+
+        getColors(){
+            axios.get('/api/colors')
+                .then(res => {
+                    this.sizes = res.data.data;
+                    console.log(res);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+
+        store(){
+            const data = new FormData();
+            let sizes = this.$refs.sizes.addedSizes;
+            let color = 1;
+            let price = 100;
+            let product_id = 1;
+
+            data.append('color', color);
+            data.append('product_id', product_id);
+            data.append('price', price);
+
+            let gallery = this.dropzone.getAcceptedFiles();
+
+            sizes.forEach(size => {
+                data.append('sizes[]', size.value)
+            })
+
+            gallery.forEach(image => {
+               data.append('gallery[]', image);
+            });
+
+            console.log(data);
+            axios.post('/api/admin/products/single', data)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        },
+
+    },
+
+    components: {ListBoxComponent, BreadcrumbsComponent,Multiselect}
 }
 
 </script>
@@ -115,4 +179,10 @@ export default {
     margin-right: auto;
 }
 
+.listbox{
+    /*width: 350px;*/
+    /*height: 100px;*/
+    /*max-width: 500px;*/
+    /*min-width: 100px;*/
+}
 </style>

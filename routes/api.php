@@ -71,7 +71,23 @@ Route::group(['prefix' => 'admin'], function(){
     });
 
     Route::group(['prefix'=>'products'], function(){
+        // product
         Route::get('/', [\App\Http\Controllers\ProductController::class, 'index']);
+        Route::get('/{product}', [\App\Http\Controllers\ProductController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\ProductController::class, 'store']);
+        Route::put('/', [\App\Http\Controllers\ProductController::class, 'update']);
+        Route::delete('/', [\App\Http\Controllers\ProductController::class, 'delete']);
+
+        // single product in product group
+        Route::group(['prefix' => 'single'], function(){
+            Route::post('/', [\App\Http\Controllers\ProductGroupController::class, 'store']);
+            Route::get('/{single}', [\App\Http\Controllers\ProductGroupController::class, 'show']);
+            Route::put('/', [\App\Http\Controllers\ProductGroupController::class, 'update']);
+            Route::delete('/', [\App\Http\Controllers\ProductGroupController::class, 'delete']);
+        });
+
+
+
     });
 
     Route::group(['prefix'=>'images'], function(){
