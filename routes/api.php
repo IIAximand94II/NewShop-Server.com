@@ -54,44 +54,73 @@ Route::get('/sliders',[\App\Http\Controllers\API\SliderController::class, 'index
 
 // api for Admin SPA Dashboard
 Route::group(['prefix' => 'admin'], function(){
-    Route::group(['prefix'=>'categories'], function(){
-        Route::get('/', [\App\Http\Controllers\CategoryController::class, 'index']);
-    });
 
-    Route::group(['prefix'=>'tags'], function(){
-        Route::get('/', [\App\Http\Controllers\TagController::class, 'index']);
-    });
-
-    Route::group(['prefix'=>'colors'], function(){
-        Route::get('/', [\App\Http\Controllers\ColorController::class, 'index']);
-    });
-
-    Route::group(['prefix'=>'sizes'], function(){
-        Route::get('/', [\App\Http\Controllers\SizeController::class, 'index']);
-    });
-
+    // Products(products,products group,categories,tags,sizes,colors)
     Route::group(['prefix'=>'products'], function(){
+        Route::group(['prefix'=>'categories'], function(){
+            Route::get('/', [\App\Http\Controllers\CategoryController::class, 'index']);
+        });
+
+        Route::group(['prefix'=>'tags'], function(){
+            Route::get('/', [\App\Http\Controllers\TagController::class, 'index']);
+        });
+
+        Route::group(['prefix'=>'colors'], function(){
+            Route::get('/', [\App\Http\Controllers\ColorController::class, 'index']);
+        });
+
+        Route::group(['prefix'=>'sizes'], function(){
+            Route::get('/', [\App\Http\Controllers\SizeController::class, 'index']);
+        });
+
         // product
         Route::get('/', [\App\Http\Controllers\ProductController::class, 'index']);
         Route::get('/{product}', [\App\Http\Controllers\ProductController::class, 'show']);
         Route::post('/', [\App\Http\Controllers\ProductController::class, 'store']);
-        Route::put('/', [\App\Http\Controllers\ProductController::class, 'update']);
+        Route::patch('/', [\App\Http\Controllers\ProductController::class, 'update']);
         Route::delete('/', [\App\Http\Controllers\ProductController::class, 'delete']);
 
         // single product in product group
         Route::group(['prefix' => 'single'], function(){
             Route::post('/', [\App\Http\Controllers\ProductGroupController::class, 'store']);
             Route::get('/{single}', [\App\Http\Controllers\ProductGroupController::class, 'show']);
-            Route::put('/', [\App\Http\Controllers\ProductGroupController::class, 'update']);
+            Route::patch('/', [\App\Http\Controllers\ProductGroupController::class, 'update']);
             Route::delete('/', [\App\Http\Controllers\ProductGroupController::class, 'delete']);
+        });
+
+    });
+
+    // Blog(posts,categories,tags,comments)
+    Route::group(['prefix' => 'blog'], function(){
+
+        Route::group(['prefix' => 'posts'], function(){
+            Route::get('/', [\App\Http\Controllers\Blog\PostController::class, 'index']);
+            Route::post('/', [\App\Http\Controllers\Blog\PostController::class, 'store']);
+            Route::get('/{post}', [\App\Http\Controllers\Blog\PostController::class, 'show']);
+            Route::patch('/{post}', [\App\Http\Controllers\Blog\PostController::class, 'update']);
+            Route::delete('/{post}', [\App\Http\Controllers\Blog\PostController::class, 'delete']);
         });
 
 
 
+        Route::group(['prefix' => 'categories'], function() {
+            Route::get('/', [\App\Http\Controllers\Blog\CategoryController::class, 'index']);
+            Route::post('/', [\App\Http\Controllers\Blog\CategoryController::class, 'store']);
+            Route::patch('/{category}', [\App\Http\Controllers\Blog\CategoryController::class, 'update']);
+            Route::delete('/{category}', [\App\Http\Controllers\Blog\CategoryController::class, 'delete']);
+        });
+
+        Route::group(['prefix' => 'tags'], function() {
+            Route::get('/', [\App\Http\Controllers\Blog\TagController::class, 'index']);
+            Route::post('/', [\App\Http\Controllers\Blog\TagController::class, 'store']);
+            Route::patch('/{tag}', [\App\Http\Controllers\Blog\TagController::class, 'update']);
+            Route::delete('/{tag}', [\App\Http\Controllers\Blog\TagController::class, 'delete']);
+        });
+
     });
 
     Route::group(['prefix'=>'images'], function(){
-        Route::get('/', [\App\Http\Controllers\ImageController::class, 'index']);
+        Route::post('/', [\App\Http\Controllers\ImageController::class, 'store']);
     });
 
     Route::group(['prefix'=>'users'], function(){

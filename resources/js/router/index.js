@@ -53,6 +53,31 @@ const router = createRouter({
             component: () => import('../views/size/IndexView.vue'),
             name: 'size.index',
         },
+        {
+            path: '/posts',
+            component: () => import('../views/blog/post/IndexView.vue'),
+            name: 'post.index',
+        },
+        {
+            path: '/posts/create',
+            component: () => import('../views/blog/post/CreateView.vue'),
+            name: 'post.create',
+        },
+        {
+            path: '/posts/edit/:id',
+            component: () => import('../views/blog/post/EditView.vue'),
+            name: 'post.edit',
+        },
+        {
+            path: '/blog/categories',
+            component: () => import('../views/blog/category/IndexView.vue'),
+            name: 'blog.category.index',
+        },
+        {
+            path: '/blog/tags',
+            component: () => import('../views/blog/tag/IndexView.vue'),
+            name: 'blog.tag.index',
+        },
     ]
 });
 

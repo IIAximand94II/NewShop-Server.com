@@ -86,6 +86,33 @@
                             </p>
                         </a>
                     </li>
+
+                    <!-- Blog -->
+                    <li class="nav-header">BLOG</li>
+                    <li class="nav-item">
+                        <router-link :to="{ name:'post.index' }" class="nav-link">
+                            <i class="nav-icon fas fa-blog"></i>
+                            <p>
+                                Posts
+                            </p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name:'blog.category.index' }" class="nav-link">
+                            <i class="nav-icon fas fa-tag"></i>
+                            <p>
+                                Categories
+                            </p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name:'blog.tag.index' }" class="nav-link">
+                            <i class="nav-icon fas fa-tags"></i>
+                            <p>
+                                Tags
+                            </p>
+                        </router-link>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

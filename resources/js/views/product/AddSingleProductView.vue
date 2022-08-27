@@ -98,10 +98,6 @@ export default {
                 {value: 4, label: 'XL'}
             ],
 
-            // selectedSize:0,
-            //
-            // addedSizes:[],
-            // totalSelectSizes: 0,
         }
     },
 
@@ -135,7 +131,7 @@ export default {
             let price = 100;
             let product_id = 1;
 
-            data.append('color', color);
+            data.append('color_id', color);
             data.append('product_id', product_id);
             data.append('price', price);
 
@@ -153,6 +149,7 @@ export default {
             axios.post('/api/admin/products/single', data)
             .then(res => {
                 console.log(res);
+                this.dropzone.removeAllFiles();
             })
             .catch(error => {
                 console.log(error);
