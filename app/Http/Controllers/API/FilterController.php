@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FilterResource;
 use App\Libraries\CategoryMenu;
+use App\Libraries\TreeBuilder;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\ProductGroup;
@@ -17,7 +18,8 @@ class FilterController extends Controller
 {
     public function index(){
         //$categories = Category::all();
-        $categories = CategoryMenu::run();
+        $categories = TreeBuilder::returnTree(Category::get());
+        //$categories = CategoryMenu::run();
         $colors = Color::all();
         $sizes = Size::all();
         $tags = Tag::all();

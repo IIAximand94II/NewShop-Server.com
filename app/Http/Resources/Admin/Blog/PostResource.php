@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Admin\Blog;
 
+use App\Libraries\TreeBuilder;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PostResource extends JsonResource
@@ -23,6 +24,8 @@ class PostResource extends JsonResource
             'status' => $this->status,
             'author' => $this->author,
             'tags' => TagResource::collection($this->tags),
+            'totalComments' => $this->comments->count(),
+            'comments' => TreeBuilder::returnTree($this->comments),
             'create' => $this->created_at,
             'update' => $this->updated_at,
         ];

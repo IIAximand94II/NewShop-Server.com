@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Blog\PostRequest;
 use App\Http\Resources\Admin\Blog\PostResource;
+use App\Libraries\TreeBuilder;
+use App\Models\Blog\Comment;
 use App\Models\Blog\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,6 +17,13 @@ class PostController extends Controller
 {
     public function index(){
         $posts = Post::all();
+
+//        $post = Post::find(6);
+//
+//        //dd($post->comments);
+//
+//        $comments = TreeBuilder::returnTree($post->comments);
+//        dd($comments);
         return PostResource::collection($posts);
     }
 

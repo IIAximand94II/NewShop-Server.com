@@ -39,7 +39,7 @@
                                         <td>{{ post.title }}</td>
                                         <td> Image</td>
                                         <td>{{ post.category.title}}</td>
-                                        <td>0</td>
+                                        <td>{{ post.totalComments ?? 0}}</td>
                                         <td>{{ post.create }}</td>
                                         <td>{{ post.update }}</td>
                                         <td>{{ post.status }}</td>
@@ -84,7 +84,7 @@ export default {
         getPosts(){
             axios.get('/api/admin/blog/posts')
                 .then(res => {
-                    console.log(res)
+                    console.log(res.data.data)
                     this.posts = res.data.data;
                 })
                 .catch(error => {
@@ -95,8 +95,6 @@ export default {
         remove(id){
             axios.delete(`/api/admin/blog/posts/${id}`)
                 .then(res => {
-                    console.log(res)
-
                     this.getPosts()
 
                     this.$wkToast(res.data.message, {
