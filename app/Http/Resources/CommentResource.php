@@ -18,7 +18,7 @@ class CommentResource extends JsonResource
         return [
             'id' => $this->id,
             'parent_id' => $this->parent_id,
-            'author' => UserResource::collection($this->user),
+            'author' => $this->user,
             'content' => $this->content,
             'children' => $this->children,
             'create' => $this->created_at,

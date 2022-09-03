@@ -37,6 +37,10 @@ Route::group(['prefix' => 'client'], function(){
         Route::group(['prefix' => 'posts'], function(){
             Route::get('/', [\App\Http\Controllers\API\Blog\PostController::class, 'index']);
             Route::get('/{post}', [\App\Http\Controllers\API\Blog\PostController::class, 'show']);
+
+            Route::group(['prefix' => '{post}/comments'], function(){
+                Route::post('/', [\App\Http\Controllers\API\Blog\CommentController::class, 'store']);
+            });
         });
 
         Route::group(['prefix' => 'categories'], function(){

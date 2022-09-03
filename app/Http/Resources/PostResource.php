@@ -27,7 +27,7 @@ class PostResource extends JsonResource
             'author' => $this->author,
             'tags' => TagResource::collection($this->tags),
             'totalComments' => $this->comments->count(),
-            'comments' => TreeBuilder::returnTree($this->comments),
+            'comments' => TreeBuilder::returnTree(CommentResource::collection($this->comments)),
             'updated' => $this->updated_at,
         ];
     }
