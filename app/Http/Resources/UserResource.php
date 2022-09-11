@@ -27,7 +27,8 @@ class UserResource extends JsonResource
             'gender' => $this->gender,
             'register_date' => $this->created_at,
             'wishlist' => $this->wishlist,
-            'review' => $this->review,
+            'reviews' => ReviewResource::collection($this->reviews),
+            'comments' => CommentResource::collection($this->comments),
             'addresses' => UserAddressResource::collection($this->addresses),
         ];
     }

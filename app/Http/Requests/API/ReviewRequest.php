@@ -4,7 +4,7 @@ namespace App\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommentRequest extends FormRequest
+class ReviewRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'parent_id' => '',
+            'product_id' => '',
+            'user_id' => '',
+            'grade' => '',
             'content' => '',
-            'user_id' => ''
         ];
     }
 }

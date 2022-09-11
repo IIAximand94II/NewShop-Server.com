@@ -15,8 +15,7 @@ class CommentController extends Controller
     public function store(Post $post, CommentRequest $request){
         $data = $request->validated();
         $data['post_id'] = $post->id;
-        //$data['user_id'] = auth()->user()->id;
-        dd($data);
+        //dd($data);
         $comment = Comment::create($data);
         return response()->json(['message' => 'Comment created.']);
     }

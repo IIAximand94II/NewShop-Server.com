@@ -37,6 +37,7 @@ class ProductResource extends JsonResource
             'old_price' => $this->old_price,
             'quantity' => $this->quantity,
             'reviews' => ReviewResource::collection($this->reviews),
+            'rating' => '',
             'hit' => $this->hit,
             'sale' => $this->sale,
             'date' => $this->created_at,

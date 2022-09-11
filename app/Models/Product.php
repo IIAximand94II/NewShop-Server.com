@@ -32,9 +32,9 @@ class Product extends Model
         //return $this->hasMany(Category::class, 'id', 'category_id');
     }
 
-    public function gallery(){
-        return $this->hasMany(ProductGallery::class, 'id', 'product_id');
-    }
+//    public function gallery(){
+//        return $this->hasMany(ProductGallery::class, 'id', 'product_id');
+//    }
 
     public function reviews(){
         return $this->hasMany(Review::class);
@@ -47,15 +47,5 @@ class Product extends Model
     public function productGroupSizes(){
         return $this->hasManyThrough(ProductGroupSize::class, ProductGroup::class, 'product_id', 'group_id');
     }
-
-    public function groupMinPrice(){
-
-    }
-
-    public function groupMaxPrice(){
-
-    }
-
-
 
 }
