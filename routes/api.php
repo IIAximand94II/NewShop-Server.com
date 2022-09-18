@@ -24,9 +24,10 @@ Route::group(['prefix' => 'client'], function(){
     Route::group(['prefix'=>'products'], function(){
         Route::post('/', [\App\Http\Controllers\API\ProductController::class, 'index']);
         Route::get('/hits', [\App\Http\Controllers\API\ProductController::class, 'hits']);
+        Route::get('/group/{group}', [\App\Http\Controllers\API\ProductController::class, 'hits']);
         Route::get('/{product}', [\App\Http\Controllers\API\ProductController::class, 'show']);
 
-        Route::group(['prefix' => '{product}/review'], function(){
+        Route::group(['prefix' => '{productGroup}/review'], function(){
             Route::post('/', [\App\Http\Controllers\API\ReviewController::class, 'store']);
         });
 
@@ -64,20 +65,8 @@ Route::group(['prefix' => 'client'], function(){
         Route::group(['middleware'=>'auth:sanctum'], function(){
 
             Route::post('/logout', [\App\Http\Controllers\API\AuthController::class, 'logout']);
-            Route::get('/', [\App\Http\Controllers\API\UserController::class, 'index']);
             //Route::post('/refresh', [\App\Http\Controllers\API\AuthController::class, 'refresh']);
             //Route::get('/test', [\App\Http\Controllers\API\TestController::class, 'index']);
-
-//            Route::group(['prefix'=>'profile'], function(){
-//
-//                Route::group(['prefix' => '{user}/address'], function(){
-//                    Route::post('/', [\App\Http\Controllers\API\Profile\AddressController::class, 'store']);
-//                    Route::patch('/{address}', [\App\Http\Controllers\API\Profile\AddressController::class, 'update']);
-//                    Route::delete('/{address}', [\App\Http\Controllers\API\Profile\AddressController::class, 'delete']);
-//                });
-//
-//            });
-
         });
 
         Route::post('/login', [\App\Http\Controllers\API\AuthController::class, 'login']);
@@ -87,7 +76,8 @@ Route::group(['prefix' => 'client'], function(){
     });
 
     // profile
-    Route::group(['prefix'=>'profile', 'middleware' => 'auth:sanctum'], function(){
+    Route::group(['prefix'=>'profile', 'middleware'=>'auth:sanctum'], function(){
+        Route::get('/{user}', [\App\Http\Controllers\API\UserController::class, 'index']);
 
         Route::group(['prefix' => '{user}/address'], function(){
             Route::post('/', [\App\Http\Controllers\API\Profile\AddressController::class, 'store']);
