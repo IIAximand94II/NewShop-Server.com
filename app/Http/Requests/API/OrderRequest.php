@@ -25,10 +25,11 @@ class OrderRequest extends FormRequest
     {
         return [
             'products' => '',
-            'user_email'=> '',
+            'name' => '',
+            'user_id' => '',
             'address' => '',
-            'product_qty' => '',
-            'total_price' => '',
+            'qty' => '',
+            'total' => '',
         ];
     }
 }

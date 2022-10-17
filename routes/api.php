@@ -36,6 +36,12 @@ Route::group(['prefix' => 'client'], function(){
         });
     });
 
+    // orders
+    Route::group(['prefix' => '{user}/order', 'middleware'=>'auth:sanctum'], function(){
+        Route::post('/', [\App\Http\Controllers\API\OrderController::class, 'store']);
+        Route::delete('/{order}', [\App\Http\Controllers\API\OrderController::class, 'delete']);
+    });
+
 
 // blog
     Route::group(['prefix' => 'blog'], function(){

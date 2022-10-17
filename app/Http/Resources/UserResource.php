@@ -30,6 +30,7 @@ class UserResource extends JsonResource
             'reviews' => ReviewResource::collection($this->reviews),
             'comments' => CommentResource::collection($this->comments),
             'addresses' => UserAddressResource::collection($this->addresses),
+            'orders' => OrderResource::collection($this->orders)
         ];
     }
 }
